@@ -1,0 +1,17 @@
+.cart {
+  margin-right: 5px;
+}
+
+.logo {
+  color: white;
+}
+
+.nav-button {
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}

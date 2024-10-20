@@ -1,0 +1,28 @@
+.pizza-card {
+  margin: 20px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+}
+
+.pizza-card span {
+  justify-content: center;
+  display: flex;
+  margin-bottom: -20px;
+  font-size: 18px;
+}
+
+.price-style {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.img-pizza {
+  height: 200px;
+}
+
+.div-buttons {
+  display: flex;
+  justify-content: space-between;
+}

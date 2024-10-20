@@ -1,0 +1,13 @@
+.footer {
+  background-color: black; /* Color de fondo negro */
+  color: white; /* Texto blanco */
+  text-align: center; /* Centrar el texto */
+  padding: 10px 0; /* Espaciado vertical */
+  position: relative; /* Para la posicion de otros elementos si se necesita */
+  bottom: 0; /* Asegurarse de que se quede en la parte inferior si es necesario */
+  width: 100%; /* Asegurarse de que ocupa todo el ancho */
+}
+
+.footer p {
+  margin: 0; /* Eliminar margen del párrafo */
+}
