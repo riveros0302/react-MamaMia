@@ -6,7 +6,7 @@
 }
 
 .pizza-card span {
-  justify-content: center;
+  justify-content: flex-start;
   display: flex;
   margin-bottom: -20px;
   font-size: 18px;

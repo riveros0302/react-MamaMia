@@ -6,6 +6,7 @@ import Footer from "./components/Footer/Footer";
 import Register from "./components/Auth/Register/Register";
 import Login from "./components/Auth/Login/Login";
 import React, { useState } from "react";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
@@ -13,12 +14,13 @@ function App() {
   return (
     <>
       <Navbar />
-      {/* <Home />*/}
-      {!isLogin ? (
+      <Cart />
+      {/*<Home />*/}
+      {/*!isLogin ? (
         <Register setIsLogin={setIsLogin} />
       ) : (
         <Login setIsLogin={setIsLogin} />
-      )}
+      )*/}
 
       <Footer />
     </>

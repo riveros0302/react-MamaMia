@@ -1,0 +1,46 @@
+.contain {
+  width: 43%;
+}
+
+.item-card {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.first-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.second-item {
+  width: 180px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  margin-right: 50px;
+}
+
+.img-pizza {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+h2 {
+  margin-bottom: 50px;
+}
+
+h3 {
+  text-align: end;
+}
+
+strong {
+  font-size: 20px;
+}

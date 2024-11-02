@@ -5,7 +5,9 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { PiPizza } from "react-icons/pi";
 import { BsCart, BsEye } from "react-icons/bs";
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ pizza }) => {
+  const { name, price, ingredients, img } = pizza;
+
   return (
     <Card className="pizza-card" style={{ width: "20rem" }}>
       <Card.Img variant="top" src={img} alt={name} className="img-pizza" />
@@ -15,7 +17,12 @@ const CardPizza = ({ name, price, ingredients, img }) => {
         <Card.Text>
           <span>Ingredientes:</span>
           <br />
-          <PiPizza /> {ingredients.join(", ")}
+          {/*  <PiPizza /> {ingredients.join(", ")}*/}
+          <ul>
+            {ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+          </ul>
         </Card.Text>
         <hr />
         <Card.Text className="price-style">
