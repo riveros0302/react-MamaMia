@@ -1,0 +1,28 @@
+.pizza-container {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.pizza-img-large {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.pizza-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  text-transform: capitalize;
+}
+
+ul li {
+  text-transform: capitalize;
+}
+
+h3 {
+  text-align: left;
+}

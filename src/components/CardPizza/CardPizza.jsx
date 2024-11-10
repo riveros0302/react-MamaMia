@@ -10,25 +10,22 @@ const CardPizza = ({ pizza }) => {
 
   return (
     <Card className="pizza-card" style={{ width: "20rem" }}>
-      <Card.Img variant="top" src={img} alt={name} className="img-pizza" />
+      <Card.Img variant="top" src={img} alt={name} />
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
+        <Card.Title className="nombre-pizza">{name}</Card.Title>
         <hr />
-        <Card.Text>
+        <div>
           <span>Ingredientes:</span>
-          <br />
-          {/*  <PiPizza /> {ingredients.join(", ")}*/}
           <ul>
             {ingredients.map((ingredient, index) => (
               <li key={index}>{ingredient}</li>
             ))}
           </ul>
-        </Card.Text>
+        </div>
         <hr />
         <Card.Text className="price-style">
           <strong>Precio: {formatCurrency(price)}</strong>
         </Card.Text>
-
         <div className="div-buttons">
           <Button variant="light">
             Ver Más <BsEye />

@@ -5,10 +5,13 @@
   justify-content: center;
 }
 
+.pizza-card ul li {
+  text-transform: capitalize;
+}
+
 .pizza-card span {
   justify-content: flex-start;
   display: flex;
-  margin-bottom: -20px;
   font-size: 18px;
 }
 
@@ -18,11 +21,11 @@
   font-size: 28px;
 }
 
-.img-pizza {
-  height: 200px;
-}
-
 .div-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.nombre-pizza {
+  text-transform: capitalize;
 }
