@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import { Container, Row, Col } from "react-bootstrap";
-import CardPizza from "../CardPizza/CardPizza";
-import { pizzas } from "../../data/pizzas";
+import CardPizza from "../../components/CardPizza/CardPizza";
 
 const Home = () => {
   const [listPizzas, setListPizzas] = useState([]);

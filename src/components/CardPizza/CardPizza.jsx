@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
-import "./CardPizza.css"; // Si necesitas estilos específicos
+import "./CardPizza.css";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { PiPizza } from "react-icons/pi";
 import { BsCart, BsEye } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const CardPizza = ({ pizza }) => {
   const { name, price, ingredients, img } = pizza;
@@ -27,7 +27,7 @@ const CardPizza = ({ pizza }) => {
           <strong>Precio: {formatCurrency(price)}</strong>
         </Card.Text>
         <div className="div-buttons">
-          <Button variant="light">
+          <Button as={Link} to={"/pizza/p001"} variant="light">
             Ver Más <BsEye />
           </Button>
           <Button variant="dark">
