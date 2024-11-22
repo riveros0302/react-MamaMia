@@ -2,11 +2,39 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import "./CardPizza.css";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { BsCart, BsEye } from "react-icons/bs";
+import { BsCart, BsEye, BsFillTrashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const CardPizza = ({ pizza }) => {
-  const { name, price, ingredients, img } = pizza;
+const CardPizza = ({
+  pizza,
+  setCart,
+  setTotal,
+  cart,
+  quantities,
+  increaseQuantity,
+  decreaseQuantity,
+}) => {
+  const { name, price, ingredients, img, id } = pizza;
+  const isInCart = cart.some((item) => item.id === id);
+
+  const addCart = () => {
+    if (isInCart) {
+      increaseQuantity(pizza.id);
+    } else {
+      setCart((prevCart) => [...prevCart, pizza]);
+    }
+
+    setTotal((prevTotal) => prevTotal + pizza.price);
+  };
+
+  const removeCart = () => {
+    if (quantities[pizza.id] === 1) {
+      setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    } else {
+      decreaseQuantity(pizza.id);
+    }
+    setTotal((prevTotal) => prevTotal - pizza.price);
+  };
 
   return (
     <Card className="pizza-card" style={{ width: "20rem" }}>
@@ -30,9 +58,21 @@ const CardPizza = ({ pizza }) => {
           <Button as={Link} to={"/pizza/p001"} variant="light">
             Ver Más <BsEye />
           </Button>
-          <Button variant="dark">
-            Añadir <BsCart />
-          </Button>
+          {isInCart ? (
+            <div className="div-addQuantity">
+              <Button variant="danger" onClick={removeCart}>
+                {quantities[pizza.id] === 1 ? <BsFillTrashFill /> : "-"}
+              </Button>
+              <Card.Text>{quantities[pizza.id]}</Card.Text>
+              <Button variant="dark" onClick={addCart}>
+                +
+              </Button>
+            </div>
+          ) : (
+            <Button variant="dark" onClick={addCart}>
+              Añadir <BsCart />
+            </Button>
+          )}
         </div>
       </Card.Body>
     </Card>

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { BsCart, BsLock } from "react-icons/bs";
 import "./navbar.css";
 import { PiPizza } from "react-icons/pi";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const NavBar = () => {
-  const total = 25000;
   const token = false;
+
+  const { total } = useContext(CartContext);
 
   return (
     <Navbar expand="lg" bg="dark" variant="light">

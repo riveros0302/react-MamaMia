@@ -1,30 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./pizza.css";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { PizzasContext } from "../../context/PizzasContext";
 
 const Pizza = () => {
-  const [pizza, setPizza] = useState(null);
-
-  useEffect(() => {
-    const getPizza = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/pizzas/p001");
-
-        if (!response.ok) {
-          throw new Error("Error en la solicitud");
-        }
-
-        const data = await response.json();
-        setPizza(data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getPizza();
-  }, []);
+  const { pizza } = useContext(PizzasContext);
 
   if (!pizza) {
     return <p>Cargando pizza...</p>; // Mostrar un mensaje mientras se cargan los datos

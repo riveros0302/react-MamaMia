@@ -1,61 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Card, Container, Button } from "react-bootstrap";
-import { pizzas } from "../../data/pizzas";
 import { formatCurrency } from "../../utils/formatCurrency";
 import "./cart.css";
+import { CartContext } from "../../context/CartContext";
 
 const Cart = () => {
-  const [total, setTotal] = useState(
-    pizzas.reduce((acc, pizza) => {
-      return acc + pizza.price;
-    }, 0)
-  );
+  const {
+    cart,
+    setTotal,
+    total,
+    quantities,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useContext(CartContext);
+  console.log("QUE TIENE CART: " + JSON.stringify(cart));
 
-  const [quantities, setQuantities] = useState(
-    pizzas.reduce((acc, pizza) => {
-      acc[pizza.id] = 1;
-      return acc;
-    }, {})
-  );
-
-  const updateTotal = (newQuantities) => {
-    const newTotal = Object.keys(newQuantities).reduce((acc, id) => {
-      const pizza = pizzas.find((pizza) => pizza.id === Number(id));
-      if (pizza) {
-        return acc + pizza.price * newQuantities[id];
-      }
-      return acc;
+  // Recalcula el total cuando cambian las cantidades o el carrito
+  useEffect(() => {
+    const newTotal = cart.reduce((acc, pizza) => {
+      return acc + pizza.price * (quantities[pizza.id] || 0);
     }, 0);
     setTotal(newTotal);
-  };
-
-  const increaseQuantity = (id) => {
-    setQuantities((prevQuantities) => {
-      const newQuantities = { ...prevQuantities, [id]: prevQuantities[id] + 1 };
-      updateTotal(newQuantities);
-      return newQuantities;
-    });
-  };
-
-  const decreaseQuantity = (id) => {
-    setQuantities((prevQuantities) => {
-      const newQuantities = { ...prevQuantities };
-
-      if (newQuantities[id] > 1) {
-        newQuantities[id] -= 1;
-      } else {
-        delete newQuantities[id];
-      }
-
-      updateTotal(newQuantities);
-      return newQuantities;
-    });
-  };
+  }, [cart, quantities]);
 
   return (
     <Container className="mt-5 mb-5 contain">
       <h2>Carrito de Compras</h2>
-      {pizzas
+      {cart
         .filter((pizza) => quantities[pizza.id] !== undefined)
         .map((pizza) => (
           <Card className="item-card" key={pizza.id}>
@@ -65,7 +36,7 @@ const Cart = () => {
                 alt={pizza.name}
                 className="img-pizza"
               />
-              <Card.Title>{pizza.name}</Card.Title>
+              <Card.Title className="title-pizza">{pizza.name}</Card.Title>
             </div>
             <div className="second-item">
               <strong>

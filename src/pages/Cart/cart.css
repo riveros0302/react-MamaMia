@@ -44,3 +44,7 @@ h3 {
 strong {
   font-size: 20px;
 }
+
+.title-pizza {
+  text-transform: capitalize;
+}

@@ -29,3 +29,31 @@
 .nombre-pizza {
   text-transform: capitalize;
 }
+
+.div-addQuantity {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: 30px;
+}
+
+.div-addQuantity button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0;
+  height: 100%;
+  width: 30px;
+  border: none;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.div-addQuantity p {
+  font-size: 20px;
+  font-weight: bold;
+  height: 100%;
+  align-content: center;
+}
