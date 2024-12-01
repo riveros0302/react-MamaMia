@@ -3,6 +3,7 @@ import { Card, Container, Button } from "react-bootstrap";
 import { formatCurrency } from "../../utils/formatCurrency";
 import "./cart.css";
 import { CartContext } from "../../context/CartContext";
+import { UserContext } from "../../context/UserContext";
 
 const Cart = () => {
   const {
@@ -13,7 +14,7 @@ const Cart = () => {
     increaseQuantity,
     decreaseQuantity,
   } = useContext(CartContext);
-  console.log("QUE TIENE CART: " + JSON.stringify(cart));
+  const { token } = useContext(UserContext);
 
   // Recalcula el total cuando cambian las cantidades o el carrito
   useEffect(() => {
@@ -60,7 +61,12 @@ const Cart = () => {
           </Card>
         ))}
       <hr />
-      <h3>Total: {formatCurrency(total)}</h3>
+      <div className="total">
+        <h3>Total: {formatCurrency(total)}</h3>
+        <Button variant="outline-primary" onClick={() => {}} disabled={!token}>
+          Pagar
+        </Button>
+      </div>
     </Container>
   );
 };

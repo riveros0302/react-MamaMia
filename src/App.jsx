@@ -6,15 +6,18 @@ import React from "react";
 import MisRutas from "./routes/MisRutas";
 import CartProvider from "./context/CartContext";
 import PizzasProvider from "./context/PizzasContext";
+import UserProvider from "./context/UserContext";
 
 function App() {
   return (
     <>
       <CartProvider>
-        <Navbar />
-        <PizzasProvider>
-          <MisRutas />
-        </PizzasProvider>
+        <UserProvider>
+          <Navbar />
+          <PizzasProvider>
+            <MisRutas />
+          </PizzasProvider>
+        </UserProvider>
       </CartProvider>
 
       <Footer />

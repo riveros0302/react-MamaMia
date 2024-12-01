@@ -4,7 +4,6 @@ export const PizzasContext = createContext();
 
 const PizzasProvider = ({ children }) => {
   const [listPizzas, setListPizzas] = useState([]);
-  const [pizza, setPizza] = useState(null);
 
   // Reusable fetch function
   const fetchData = async (url, callback) => {
@@ -26,12 +25,8 @@ const PizzasProvider = ({ children }) => {
     fetchData("http://localhost:5000/api/pizzas", setListPizzas);
   }, []);
 
-  useEffect(() => {
-    fetchData("http://localhost:5000/api/pizzas/p001", setPizza);
-  }, []);
-
   return (
-    <PizzasContext.Provider value={{ listPizzas, pizza }}>
+    <PizzasContext.Provider value={{ listPizzas, fetchData }}>
       {children}
     </PizzasContext.Provider>
   );

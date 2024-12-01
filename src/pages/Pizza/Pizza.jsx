@@ -3,9 +3,16 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import "./pizza.css";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { PizzasContext } from "../../context/PizzasContext";
+import { useParams } from "react-router-dom";
 
 const Pizza = () => {
-  const { pizza } = useContext(PizzasContext);
+  const { fetchData } = useContext(PizzasContext);
+  const { id } = useParams();
+  const [pizza, setPizza] = useState(null);
+
+  useEffect(() => {
+    fetchData(`http://localhost:5000/api/pizzas/${id}`, setPizza);
+  }, [id]);
 
   if (!pizza) {
     return <p>Cargando pizza...</p>; // Mostrar un mensaje mientras se cargan los datos

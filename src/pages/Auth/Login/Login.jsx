@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button, Alert, Container } from "react-bootstrap";
+import { UserContext } from "../../../context/UserContext";
 
 const Login = ({ setIsLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const { login } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ const Login = ({ setIsLogin }) => {
       setSuccess("");
     } else if (email === "riveros@gmail.com" && password === "123456") {
       setSuccess("Inicio de sesión exitoso.");
+      login(true);
       setError("");
     } else {
       setError("Correo o contraseña incorrectos");

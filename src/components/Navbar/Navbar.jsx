@@ -6,9 +6,11 @@ import { PiPizza } from "react-icons/pi";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { UserContext } from "../../context/UserContext";
 
 const NavBar = () => {
-  const token = false;
+  const { token, logout } = useContext(UserContext);
+  console.log("que trae navbar token: " + token);
 
   const { total } = useContext(CartContext);
 
@@ -35,12 +37,7 @@ const NavBar = () => {
                 <BsLock />
                 Profile
               </Button>
-              <Button
-                as={Link}
-                to={"/login"}
-                variant="link"
-                className="nav-button"
-              >
+              <Button variant="link" className="nav-button" onClick={logout}>
                 <BsLock />
                 Logout
               </Button>

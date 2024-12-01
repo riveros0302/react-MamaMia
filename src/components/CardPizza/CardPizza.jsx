@@ -55,7 +55,7 @@ const CardPizza = ({
           <strong>Precio: {formatCurrency(price)}</strong>
         </Card.Text>
         <div className="div-buttons">
-          <Button as={Link} to={"/pizza/p001"} variant="light">
+          <Button as={Link} to={`/pizzas/${id}`} variant="light">
             Ver Más <BsEye />
           </Button>
           {isInCart ? (
