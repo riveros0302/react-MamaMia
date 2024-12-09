@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Form, Button, Alert, Container } from "react-bootstrap";
 import { UserContext } from "../../../context/UserContext";
 
-const Login = ({ setIsLogin }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -12,19 +12,7 @@ const Login = ({ setIsLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (password.length < 6) {
-      setError("La contraseña debe ser mayor o igual a 6 caracteres");
-      setSuccess("");
-    } else if (email === "riveros@gmail.com" && password === "123456") {
-      setSuccess("Inicio de sesión exitoso.");
-      login(true);
-      setError("");
-    } else {
-      setError("Correo o contraseña incorrectos");
-      setSuccess("");
-      setEmail("");
-      setPassword("");
-    }
+    login(email, password, setSuccess, setError);
   };
 
   return (
@@ -60,14 +48,6 @@ const Login = ({ setIsLogin }) => {
           Iniciar Sesión
         </Button>
       </Form>
-      <Button
-        variant="secondary"
-        type="submit"
-        className="w-20 mt-3"
-        onClick={() => setIsLogin(false)}
-      >
-        Registrarse
-      </Button>
     </Container>
   );
 };

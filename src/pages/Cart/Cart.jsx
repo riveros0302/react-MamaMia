@@ -4,17 +4,22 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import "./cart.css";
 import { CartContext } from "../../context/CartContext";
 import { UserContext } from "../../context/UserContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const Cart = () => {
   const {
     cart,
+    setCart,
     setTotal,
     total,
     quantities,
     increaseQuantity,
     decreaseQuantity,
   } = useContext(CartContext);
-  const { token } = useContext(UserContext);
+  const { token, fetchData } = useContext(UserContext);
 
   // Recalcula el total cuando cambian las cantidades o el carrito
   useEffect(() => {
@@ -23,6 +28,30 @@ const Cart = () => {
     }, 0);
     setTotal(newTotal);
   }, [cart, quantities]);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetchData({
+        url: "/api/checkouts",
+        method: "POST",
+        data: {
+          cart,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      MySwal.fire({
+        icon: "success",
+        title: response.message,
+        text: `${response.user.email}, tu compra fue realizada con exito.
+        Nmro Compra: ${response.user.iat}`,
+        confirmButtonText: "Continuar",
+      });
+      setCart([]);
+    } catch (error) {}
+  };
 
   return (
     <Container className="mt-5 mb-5 contain">
@@ -63,7 +92,11 @@ const Cart = () => {
       <hr />
       <div className="total">
         <h3>Total: {formatCurrency(total)}</h3>
-        <Button variant="outline-primary" onClick={() => {}} disabled={!token}>
+        <Button
+          variant="outline-primary"
+          onClick={handleSubmit}
+          disabled={!token}
+        >
           Pagar
         </Button>
       </div>

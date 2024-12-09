@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { UserContext } from "../../../context/UserContext";
 
 const MySwal = withReactContent(Swal);
 
-const Register = ({ setIsLogin }) => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { register } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,15 +31,12 @@ const Register = ({ setIsLogin }) => {
       });
       return;
     } else if (email && password && confirmPassword) {
+      register(email, password);
       MySwal.fire({
         icon: "success",
         title: "¡Registro exitoso!",
         text: "Tu cuenta ha sido registrada con éxito.",
         confirmButtonText: "Continuar",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setIsLogin(true);
-        }
       });
     }
   };
@@ -83,14 +82,6 @@ const Register = ({ setIsLogin }) => {
           Registrarse
         </Button>
       </Form>
-      <Button
-        variant="secondary"
-        type="submit"
-        className="w-20 mt-3"
-        onClick={() => setIsLogin(true)}
-      >
-        Iniciar Sesión
-      </Button>
     </Container>
   );
 };

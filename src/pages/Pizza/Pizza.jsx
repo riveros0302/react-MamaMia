@@ -2,16 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./pizza.css";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { PizzasContext } from "../../context/PizzasContext";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Pizza = () => {
-  const { fetchData } = useContext(PizzasContext);
+  const { fetchData } = useContext(UserContext);
   const { id } = useParams();
   const [pizza, setPizza] = useState(null);
 
   useEffect(() => {
-    fetchData(`http://localhost:5000/api/pizzas/${id}`, setPizza);
+    fetchData({ url: `/api/pizzas/${id}`, setState: setPizza });
   }, [id]);
 
   if (!pizza) {

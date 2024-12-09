@@ -1,28 +1,14 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
+import { UserContext } from "./UserContext";
 
 export const PizzasContext = createContext();
 
 const PizzasProvider = ({ children }) => {
   const [listPizzas, setListPizzas] = useState([]);
-
-  // Reusable fetch function
-  const fetchData = async (url, callback) => {
-    try {
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`Error en la solicitud: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      callback(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { fetchData } = useContext(UserContext);
 
   useEffect(() => {
-    fetchData("http://localhost:5000/api/pizzas", setListPizzas);
+    fetchData({ url: "/api/pizzas", setState: setListPizzas });
   }, []);
 
   return (
